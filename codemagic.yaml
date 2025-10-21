@@ -1,0 +1,19 @@
+workflows:
+  ios-release:
+    name: iOS Release Build
+    max_build_duration: 60
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+      vars:
+        APP_ID: "com.matroodi.wholesale3"       # غيّر هذا حسب الـ Bundle ID مالتك
+        BUNDLE_NAME: "MYAPP"                    # اسم التطبيق
+      groups:
+        - ios_credentials                        # مجموعة الشهادات المربوطة بكودماجيك
+    scripts:
+      - name: Install dependencies
+        script: |
+          flutter clean
+          flutter pub get
+          flutter precache --ios
